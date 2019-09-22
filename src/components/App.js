@@ -3,9 +3,10 @@ import { connect } from "react-redux";
 import LoadingBar from "react-redux-loading";
 
 import { handleInitialData } from "../actions/shared";
-import Dashboard from "./Dashboard";
-import Leaderboard from "./Leaderboard";
-import Addpoll from "./Addpoll";
+// import Dashboard from "./Dashboard";
+// import Leaderboard from "./Leaderboard";
+// import Addpoll from "./Addpoll";
+import Poll from "./Poll";
 
 class App extends Component {
   componentDidMount() {
@@ -15,7 +16,9 @@ class App extends Component {
     return (
       <div>
         <LoadingBar />
-        {this.props.loading === true ? null : <Addpoll />}
+        {this.props.loading === true ? null : (
+          <Poll match={{ params: { id: "xj352vofupe1dqz9emx13r" } }} />
+        )}
       </div>
     );
   }
