@@ -22,7 +22,7 @@ class Poll extends Component {
       (total, key) => (total = total + poll[key].length),
       0
     );
-    debugger;
+
     return (
       <div className="poll-container">
         <h1 className="question">{poll.question}</h1>
