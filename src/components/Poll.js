@@ -1,12 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getPercentage } from "../utils/helpers";
+import { handleAddAnswer } from "../actions/answer";
 
 class Poll extends Component {
   handleAnswer = answer => {
     const { poll, authedUser } = this.props;
     this.answered = true;
-    console.log(answer);
+    this.props.dispatch(
+      handleAddAnswer({
+        answer,
+        id: poll.id,
+        authedUser
+      })
+    );
   };
   render() {
     if (!this.props.poll) return <p>This poll does not exit</p>;
@@ -15,7 +22,7 @@ class Poll extends Component {
       (total, key) => (total = total + poll[key].length),
       0
     );
-    // debugger;
+    debugger;
     return (
       <div className="poll-container">
         <h1 className="question">{poll.question}</h1>
@@ -27,6 +34,7 @@ class Poll extends Component {
             const count = poll[key[0] + "Votes"].length;
             return (
               <li
+                key={key}
                 onClick={() => {
                   if (!vote && !this.answered) return this.handleAnswer(key[0]);
                 }}
